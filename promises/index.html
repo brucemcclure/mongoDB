@@ -9,7 +9,19 @@
     <button>Click!</button>
 
     <script>
-        console.log('the game is starting');
+        let counter = 0;
+
+        document.querySelector('button').addEventListener('click', ()=>{
+            ++ counter;
+        });
+
+        setTimeout(() => {
+            if (counter > 5) {
+                console.log('You won');
+            } else {
+                console.log('You lost');
+            }
+        }, 2000);
     </script>
 </body>
 </html>
