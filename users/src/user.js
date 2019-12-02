@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-  name: String
+  name: String,
+  postCount: Number
 })
 
 // 1st arg is what the collection is called on the mongo side of things

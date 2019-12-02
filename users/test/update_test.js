@@ -6,7 +6,7 @@ describe('updating users records', done => {
 
   beforeEach(done => {
     // no let/var/cont because it is already 'let'ed
-    hamo = new User({ name: 'Hamo' })
+    hamo = new User({ name: 'Hamo', postCount: 0 })
     hamo.save().then(() => done())
   })
 
@@ -43,5 +43,14 @@ describe('updating users records', done => {
   // used when we need to update a unique record based on a users _id
   it('A model instance can find a record with an id and update', done => {
     User.findByIdAndUpdate(hamo._id, { name: 'Pickle' }, done)
+  })
+
+  // This is an example of using the Update Operators from Mongo
+
+  it('a user can have their post count incrimented by 1', done => {
+    User.update({ name: 'Hamo' }, { $inc: { postCount: 1 } })
+      .then(() => User.findOne({ name: 'Hamo' }))
+      .then(user => assert(user.postCount === 1))
+    done()
   })
 })
