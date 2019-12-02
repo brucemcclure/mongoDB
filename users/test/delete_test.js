@@ -15,7 +15,7 @@ describe('Deleting a user', done => {
   // Model means hamo object. Class means User
   it('model instance remove', done => {
     // Find a user, then have a look for him, then make sure he is gone.
-    hamo.remove().then(() => User.findOne({ name: 'Hamo' })).then(user => {
+    hamo.deleteOne().then(() => User.findOne({ name: 'Hamo' })).then(user => {
       assert(user === null)
       done()
     })
@@ -23,7 +23,7 @@ describe('Deleting a user', done => {
 
   it('class method remove', done => {
     // Remove a bunch of records with a given criteria
-    User.remove({ name: 'Hamo' })
+    User.deleteOne({ name: 'Hamo' })
       .then(() => User.findOne({ name: 'Hamo' }))
       .then(user => {
         assert(user === null)
