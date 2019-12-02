@@ -46,7 +46,6 @@ describe('updating users records', done => {
   })
 
   // This is an example of using the Update Operators from Mongo
-
   it('a user can have their post count incrimented by 1', done => {
     User.update({ name: 'Hamo' }, { $inc: { postCount: 1 } })
       .then(() => User.findOne({ name: 'Hamo' }))
