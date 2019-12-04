@@ -11,7 +11,8 @@ const userSchema = new Schema({
     },
     required: [true, 'Name is required.']
   },
-  posts: [PostSchema]
+  posts: [PostSchema],
+  likes: Number
 })
 
 // Creates a virtual type on users

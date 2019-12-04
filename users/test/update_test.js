@@ -6,7 +6,7 @@ describe('updating users records', done => {
 
   beforeEach(done => {
     // no let/var/cont because it is already 'let'ed
-    hamo = new User({ name: 'Hamo', postCount: 0 })
+    hamo = new User({ name: 'Hamo', likes: 0 })
     hamo.save().then(() => done())
   })
 
@@ -46,10 +46,10 @@ describe('updating users records', done => {
   })
 
   // This is an example of using the Update Operators from Mongo
-  xit('a user can have their post count incrimented by 1', done => {
-    User.update({ name: 'Hamo' }, { $inc: { postCount: 1 } })
+  it('a user can have their post count incrimented by 1', done => {
+    User.update({ name: 'Hamo' }, { $inc: { likes: 1 } })
       .then(() => User.findOne({ name: 'Hamo' }))
-      .then(user => assert(user.postCount === 1))
+      .then(user => assert(user.likes === 1))
     done()
   })
 })
