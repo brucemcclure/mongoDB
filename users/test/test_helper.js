@@ -24,7 +24,15 @@ before(done => {
 
 // Hook: A function that will be executed before running any file in test suite.
 beforeEach(done => {
-  mongoose.connection.collections.users.drop(() => {
-    done()
+  // Destructure off the collections that need to be dropped
+  // blogPosts is blogposts because it was normalized when it entered the db
+  const { users, comments, blogposts } = mongoose.connection.collections
+  // Callbac hell because we want to make sure that done is only called when the last collection is dropped
+  users.drop(() => {
+    comments.drop(() => {
+      blogposts.drop(() => {
+        done()
+      })
+    })
   })
 })

@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 const PostSchema = require('./post')
 const Schema = mongoose.Schema
 
+// The reason why we have both a posts and blogPosts property on the user is for examples.
+// posts are an example of nested data.
+// blogPosts are an example of creating realtions
+
 const userSchema = new Schema({
   name: {
     type: String,
@@ -12,7 +16,13 @@ const userSchema = new Schema({
     required: [true, 'Name is required.']
   },
   posts: [PostSchema],
-  likes: Number
+  likes: Number,
+  blogPosts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'blogPost'
+    }
+  ]
 })
 
 // Creates a virtual type on users
